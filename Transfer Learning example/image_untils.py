@@ -1,6 +1,5 @@
+# coding: utf-8
 import os
-import skimage.io
-import skimage.transform
 import cv2
 import numpy as np
 from tensorflow.keras.applications.vgg16 import preprocess_input
@@ -19,7 +18,7 @@ def load_img(path):
     img.astype(np.float32)
     # img = img / 255.0
     resized_img = cv2.resize(img, (224, 224))
-    out_img = preprocess_input(resized_img)
+    #out_img = preprocess_input(resized_img)
     # we crop image from center
     #short_edge = min(img.shape[:2])
     #yy = int((img.shape[0] - short_edge) / 2)
@@ -35,7 +34,7 @@ def load_data(prepath, num=None):
    按照文件夹名称命名分类的name
     """
     classes = os.listdir(prepath)
-    imgs = { cla: [] for cla in classes}
+    imgs = { cla: [] for cla in classes if k != '.ipynb_checkpoints'}
     y = []
     i = 0
     for k in imgs.keys():
